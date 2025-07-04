@@ -1,8 +1,81 @@
-/******* Change Box Model ***************/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+
+nav {
+  background-color: #333; 
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex; 
+  justify-content: center; 
+}
+
+nav li {
+  margin: 0;
+}
+
+nav li + li {
+  margin-left: 2rem; 
+}
+
+nav li {
+  display: inline-block;
+}
+
+nav li a {
+  display: block;
+  padding: 1rem;
+  color: #fff; 
+  text-decoration: none;
+}
+
+nav li a:hover,
+nav li a:focus {
+  background-color: #555; 
+}
+
+
+
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #444; 
+  color: #fff;
+  padding: 1rem 2rem;
+}
+
+#top-header a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#top-header a:hover,
+#top-header a:focus {
+  text-decoration: underline;
+}
+
+.siteName {
+  font-size: 1.5rem;
+}
+
+#tools a {
+  background-color: #0077cc; 
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+#tools a:hover,
+#tools a:focus {
+  background-color: #005fa3;
 }
 
 body {
@@ -17,31 +90,64 @@ main {
   padding: 1rem;
 }
 
-/* Hero Section */
+
 .hero {
+  position: relative;
+  text-align: left; 
+  background-image: url("/images/vehicles/delorean.jpg"); /* change to your vehicle image */
+  background-size: cover;
+  background-position: center;
+  min-height: 60vh;
+  padding: 2rem;
+  color: #fff;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  justify-content: center;
 }
 
-.hero-text h1 {
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4); 
+  z-index: 0;
+}
+
+.hero h1 {
+  position: relative;
+  z-index: 1;
   font-size: 2rem;
-  margin: 0.5rem 0;
+  margin-bottom: 2rem;
 }
 
-.hero-text ul {
+.hero-box {
+  position: relative;
+  z-index: 1;
+  background-color: #f9f9f9; 
+  border: 2px solid #333;
+  padding: 2rem;
+  max-width: 400px;
+  color: #222;
+  align-self: flex-start; 
+}
+
+.hero-box h2 {
+  margin-top: 0;
+}
+
+.hero-box ul {
   list-style: none;
   padding: 0;
+  margin: 0 0 1rem;
 }
 
-.hero-text li {
+.hero-box li {
   margin: 0.5rem 0;
+  text-align: left;
 }
 
 .cta-btn {
   display: inline-block;
-  margin-top: 1rem;
   background: #0077cc;
   color: #fff;
   padding: 0.75rem 1.5rem;
@@ -54,14 +160,8 @@ main {
   background: #005fa3;
 }
 
-/* Hero Image */
-.hero-img img {
-  max-width: 100%;
-  height: auto;
-  margin-top: 1rem;
-}
 
-/* Upgrades Section */
+
 .upgrades {
   margin-top: 2rem;
 }
@@ -86,7 +186,7 @@ main {
   margin-top: 0.5rem;
 }
 
-/* Reviews Section */
+
 .reviews {
   margin-top: 2rem;
 }
@@ -99,7 +199,7 @@ main {
   margin-bottom: 0.5rem;
 }
 
-/* ======= Large Screens ======= */
+
 @media screen and (min-width: 768px) {
   .hero {
     flex-direction: row;
@@ -120,3 +220,40 @@ main {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+.main-sections {
+  display: flex;
+  flex-direction: column; 
+  gap: 2rem;
+  margin: 2rem auto 0 auto; 
+  max-width: 1200px; 
+  padding: 0 1rem; 
+}
+
+.upgrades,
+.reviews {
+  flex: 1; 
+  padding: 1rem; 
+}
+
+.upgrades h2,
+.reviews h2 {
+  text-align: left; 
+}
+
+.upgrades p,
+.upgrades li,
+.reviews li {
+  text-align: left; 
+}
+
+@media screen and (min-width: 768px) {
+  .main-sections {
+    flex-direction: row; 
+  }
+
+  .upgrades-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
