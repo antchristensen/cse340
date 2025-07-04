@@ -176,15 +176,32 @@ main {
   text-align: center;
 }
 
-.upgrade-card img {
-  width: 100%;
-  height: auto;
+.upgrade-img {
+  background-color: #005fa3; /
   border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 5px;
 }
 
-.upgrade-card p {
-  margin-top: 0.5rem;
+.upgrade-img img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
+
+.upgrade-card a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.upgrade-card a:hover,
+.upgrade-card a:focus {
+  text-decoration: underline;
+}
+
 
 
 .reviews {
