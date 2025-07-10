@@ -1,3 +1,9 @@
+DROP TABLE IF EXISTS public.inventory;
+DROP TABLE IF EXISTS public.account;
+DROP TABLE IF EXISTS public.classification;
+
+DROP TYPE IF EXISTS public.account_type;
+
 -- Create ENUM type for account_type
 CREATE TYPE public.account_type AS ENUM ('Client', 'Employee', 'Admin');
 
@@ -59,6 +65,7 @@ VALUES
     ('Ford', 'Mustang', '2021', 'A classic Ford Mustang Sport car.', '/images/mustang.jpg', '/images/mustang-thumb.jpg', 55000, 8000, 'Red', 2);
 
 -- Verify
+SELECT * FROM public.classification ORDER BY classification_id ASC;
 SELECT * FROM public.inventory ORDER BY inv_id ASC;
 
 -- #4 - Fix Hummer description
