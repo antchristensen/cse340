@@ -1,8 +1,10 @@
+--  ONLY USE IF ALREADY CREATED
 DROP TABLE IF EXISTS public.inventory;
 DROP TABLE IF EXISTS public.account;
 DROP TABLE IF EXISTS public.classification;
-
+--  ONLY USE IF ALREADY CREATED
 DROP TYPE IF EXISTS public.account_type;
+
 
 -- Create ENUM type for account_type
 CREATE TYPE public.account_type AS ENUM ('Client', 'Employee', 'Admin');
