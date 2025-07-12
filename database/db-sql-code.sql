@@ -59,6 +59,8 @@ VALUES
     ('Truck'),
     ('Sedan');
 
+-- Insert full inventory data
+
 INSERT INTO public.inventory (
     inv_make,
     inv_model,
