@@ -1,0 +1,17 @@
+<!-- Error View -->
+
+<!-- Heading -->
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<!-- Error Message -->
+<div class="error-message">
+  <%- message %>
+</div>
+
+<!-- Optional Humor -->
+<p>Well, this wasn't supposed to happen... Maybe a flux capacitor blew out? 🛠️</p>
+<p><a href="/">Return to safety (Home)</a></p>
