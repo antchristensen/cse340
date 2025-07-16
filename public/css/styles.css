@@ -320,3 +320,10 @@ main {
   font-weight: bold;
   font-size: 1rem;
 }
+
+nav h1,
+section h1,
+article h1,
+aside h1 {
+  font-size: 2rem; 
+}
