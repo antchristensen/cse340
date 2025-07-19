@@ -343,3 +343,16 @@ main {
     flex-direction: column;
   }
 }
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+nav li {
+  margin: 0.5rem;
+}
