@@ -398,3 +398,36 @@ nav li {
   color: #3498db;
   text-decoration: none;
 }
+
+.register-form {
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  margin: auto;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.register-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.register-form input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.register-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
