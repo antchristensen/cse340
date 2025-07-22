@@ -15,6 +15,8 @@ const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const errorRoute = require("./routes/errorRoute")
 const utilities = require("./utilities/")
+const accountRoute = require("./routes/accountRoute")
+
 
 /* ***********************
  * Create App
@@ -60,6 +62,8 @@ app.use("/error", errorRoute)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
 app.use("/inv", inventoryRoute)
+
+app.use("/account", accountRoute)
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
