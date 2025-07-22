@@ -2,23 +2,30 @@
 
 <%- messages() %>
 
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
 <form action="/account/register" method="post" class="register-form">
   <label for="account_firstname">First Name:</label>
-  <input type="text" id="account_firstname" name="account_firstname" required placeholder="Enter your first name">
+  <input type="text" id="account_firstname" name="account_firstname" required value="<%= account_firstname ? account_firstname : '' %>">
 
   <label for="account_lastname">Last Name:</label>
-  <input type="text" id="account_lastname" name="account_lastname" required placeholder="Enter your last name">
+  <input type="text" id="account_lastname" name="account_lastname" required value="<%= account_lastname ? account_lastname : '' %>">
 
   <label for="account_email">Email Address:</label>
-  <input type="email" id="account_email" name="account_email" required placeholder="Enter a valid email address">
+  <input type="email" id="account_email" name="account_email" required value="<%= account_email ? account_email : '' %>">
 
   <label for="account_password">Password:</label>
   <div class="password-requirements">
     Passwords must be at least 12 characters long and contain at least 1 number, 1 capital letter, and 1 special character.
   </div>
   <input type="password" id="account_password" name="account_password" required
-    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
-    placeholder="Create a secure password">
+    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
 
   <button type="submit">Register</button>
 </form>
