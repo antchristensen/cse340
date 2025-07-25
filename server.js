@@ -18,7 +18,6 @@ const utilities = require("./utilities/")
 const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
 
-
 /* ***********************
  * Create App
  *************************/
@@ -54,7 +53,7 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
  *************************/
 app.set("view engine", "ejs")
 app.use(expressLayouts)
-app.set("layout", "./layouts/layout") // not at views root
+app.set("layout", "./layouts/layout")
 
 /* ***********************
  * Routes
