@@ -10,13 +10,14 @@ const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const session = require("express-session")
-const pool = require("./database/")  // Database connection
+const pool = require("./database/")  
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const errorRoute = require("./routes/errorRoute")
-const utilities = require("./utilities/")
+const utilities = require("./utilities/")  
 const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser") 
 
 /* ***********************
  * Create App
@@ -46,7 +47,13 @@ app.use(function(req, res, next){
 
 // Body Parser Middleware
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// Cookie Parser Middleware
+app.use(cookieParser()) 
+
+// Apply JWT Middleware globally
+app.use(utilities.checkJWTToken)
 
 /* ***********************
  * View Engine and Templates
@@ -76,7 +83,6 @@ app.use(async (req, res, next) => {
 
 /* ***********************
  * Express Error Handler
- * Place after all other middleware
  *************************/
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
