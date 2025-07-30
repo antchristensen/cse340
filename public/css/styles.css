@@ -437,3 +437,17 @@ nav li {
   color: #555;
   margin-bottom: 8px;
 }
+
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+}
+#inventoryDisplay th, #inventoryDisplay td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+#inventoryDisplay th {
+  background-color: #f4f4f4;
+}

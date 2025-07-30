@@ -3,7 +3,7 @@ const express = require("express")
 const router = new express.Router()
 const invController = require("../controllers/invController")
 const utilities = require("../utilities/")
-const invValidate = require("../utilities/classification-validation") // <-- Add this file if not done yet
+const invValidate = require("../utilities/classification-validation") 
 
 // Route to build inventory management view
 router.get(
@@ -49,6 +49,12 @@ router.post(
   invValidate.inventoryRules(),
   invValidate.checkInventoryData,
   utilities.handleErrors(invController.addInventory)
+)
+
+// Route to return inventory data as JSON for AJAX
+router.get(
+  "/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON)
 )
 
 module.exports = router

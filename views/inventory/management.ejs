@@ -1,6 +1,6 @@
 <h1>Inventory Management</h1>
 
-<% if (message.length > 0) { %>
+<% if (message && message.length > 0) { %>
   <div class="flash"><%= message %></div>
 <% } %>
 
@@ -8,3 +8,21 @@
   <li><a href="/inv/add-classification">Add New Classification</a></li>
   <li><a href="/inv/add-inventory">Add New Inventory</a></li>
 </ul>
+
+<h2>Manage Inventory</h2>
+<p>Use the classification list to choose a classification to see the items in inventory.</p>
+
+<!-- Classification Dropdown -->
+<form id="classificationForm">
+  <label for="classificationList">Classification:</label>
+  <%- classificationSelect %>
+</form>
+
+<!-- Table for AJAX-injected inventory data -->
+<table id="inventoryDisplay"></table>
+
+<!-- Message if JavaScript is disabled -->
+<noscript>JavaScript must be enabled to use this page.</noscript>
+
+<!-- Include JavaScript for AJAX -->
+<script src="../../js/inventory.js"></script>
