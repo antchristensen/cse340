@@ -57,4 +57,12 @@ router.get(
   utilities.handleErrors(invController.getInventoryJSON)
 )
 
+// Route to display the edit inventory form
+router.get(
+  "/edit/:inv_id",
+  utilities.handleErrors(invController.buildEditInventory)
+)
+
+
+
 module.exports = router
