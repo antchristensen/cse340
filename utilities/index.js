@@ -10,7 +10,7 @@ Util.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications()
   let list = "<ul>"
   list += '<li><a href="/" title="Home page">Home</a></li>'
-  data.rows.forEach((row) => {
+  data.forEach((row) => {  
     list += "<li>"
     list +=
       '<a href="/inv/type/' +
@@ -34,7 +34,7 @@ Util.buildClassificationList = async function (classification_id = null) {
   let classificationList =
     '<select name="classification_id" id="classificationList" required>'
   classificationList += "<option value=''>Choose a Classification</option>"
-  data.rows.forEach((row) => {
+  data.forEach((row) => {  // ✅ removed .rows
     classificationList += '<option value="' + row.classification_id + '"'
     if (
       classification_id != null &&
@@ -142,6 +142,5 @@ Util.checkLogin = (req, res, next) => {
     return res.redirect("/account/login")
   }
 }
-
 
 module.exports = Util

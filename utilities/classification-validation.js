@@ -1,6 +1,9 @@
 const { body, validationResult } = require("express-validator")
 const utilities = require("./")
 
+/* **************************
+ * Classification Rules
+ * ************************** */
 const classificationRules = () => {
   return [
     body("classification_name")
@@ -12,6 +15,9 @@ const classificationRules = () => {
   ]
 }
 
+/* **************************
+ * Check Classification Data
+ * ************************** */
 const checkClassificationData = async (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -27,6 +33,9 @@ const checkClassificationData = async (req, res, next) => {
   next()
 }
 
+/* **************************
+ * Inventory Rules
+ * ************************** */
 const inventoryRules = () => {
   return [
     body("inv_make").trim().notEmpty().withMessage("Please provide a make."),
@@ -42,6 +51,9 @@ const inventoryRules = () => {
   ]
 }
 
+/* **************************
+ * Check Inventory Data
+ * ************************** */
 const checkInventoryData = async (req, res, next) => {
   const errors = validationResult(req)
   let nav = await utilities.getNav()
@@ -61,10 +73,48 @@ const checkInventoryData = async (req, res, next) => {
   next()
 }
 
+/* **************************
+ * Check Update Inventory Data
+ * ************************** */
+const checkUpdateData = async (req, res, next) => {
+  const errors = validationResult(req)
+  let nav = await utilities.getNav()
+  let classificationList = await utilities.buildClassificationList(req.body.classification_id)
+  const {
+    inv_id, inv_make, inv_model, inv_year,
+    inv_description, inv_image, inv_thumbnail,
+    inv_price, inv_miles, inv_color
+  } = req.body
+
+  if (!errors.isEmpty()) {
+    const itemName = `${inv_make} ${inv_model}`
+    res.render("inventory/edit-inventory", {
+      title: "Edit " + itemName,
+      nav,
+      classificationList,
+      errors: errors.array(),
+      message: null,
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color
+    })
+    return
+  }
+  next()
+}
 
 module.exports = {
   classificationRules,
   checkClassificationData,
   inventoryRules,
-  checkInventoryData
+  checkInventoryData,
+  checkUpdateData
 }
+

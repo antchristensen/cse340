@@ -1,8 +1,6 @@
 <h1>Edit Inventory Item</h1>
 
-<% if (message && message.length > 0) { %>
-  <div class="flash"><%= message %></div>
-<% } %>
+<%- messages() %>
 
 <% if (errors && errors.length > 0) { %>
   <div class="errors">
@@ -14,7 +12,8 @@
   </div>
 <% } %>
 
-<form action="/inv/update" method="post">
+<!-- Added id="updateForm" -->
+<form id="updateForm" action="/inv/update" method="post">
   <input type="hidden" name="inv_id" value="<%= inv_id %>">
 
   <label for="classificationList">Classification</label>
@@ -47,5 +46,9 @@
   <label for="inv_color">Color</label>
   <input type="text" id="inv_color" name="inv_color" required value="<%= inv_color || '' %>">
 
-  <button type="submit">Update Vehicle</button>
+  <!-- Added id and disabled attribute -->
+  <button id="updateBtn" type="submit" disabled>Update Vehicle</button>
 </form>
+
+<!-- Linked JavaScript -->
+<script src="/js/inv-update.js"></script>
