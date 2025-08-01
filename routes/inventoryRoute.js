@@ -63,7 +63,7 @@ router.get(
   utilities.handleErrors(invController.buildEditInventory)
 )
 
-
+// Route to handle inventory update
 router.post(
   "/update",
   invValidate.inventoryRules(),
@@ -71,5 +71,19 @@ router.post(
   utilities.handleErrors(invController.updateInventory)
 )
 
+
+// Delete Routes
+
+// Route to display delete confirmation view
+router.get(
+  "/delete/:inv_id",
+  utilities.handleErrors(invController.buildDeleteConfirm)
+)
+
+// Route to handle deletion
+router.post(
+  "/delete",
+  utilities.handleErrors(invController.deleteItem)
+)
 
 module.exports = router

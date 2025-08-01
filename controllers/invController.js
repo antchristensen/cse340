@@ -146,15 +146,11 @@ invCont.addInventory = async function (req, res, next) {
   }
 }
 
-/* ***************************
- *  Return Inventory by Classification As JSON
- * ************************** */
+/* Return Inventory by Classification As JSON */
 invCont.getInventoryJSON = async (req, res, next) => {
   const classification_id = parseInt(req.params.classification_id)
   try {
     const invData = await invModel.getInventoryByClassificationId(classification_id)
-    
-    // Handle when there are no vehicles
     if (invData && invData.length > 0) {
       return res.json(invData)
     } else {
@@ -166,10 +162,7 @@ invCont.getInventoryJSON = async (req, res, next) => {
   }
 }
 
-
-/* ***************************
- *  Build Edit Inventory View
- * ************************** */
+/* Build Edit Inventory View */
 invCont.buildEditInventory = async function (req, res, next) {
   try {
     const inv_id = parseInt(req.params.inv_id)
@@ -205,9 +198,7 @@ invCont.buildEditInventory = async function (req, res, next) {
   }
 }
 
-/* ***************************
- *  Update Inventory Data
- * ************************** */
+/* Update Inventory Data */
 invCont.updateInventory = async function (req, res, next) {
   let nav = await utilities.getNav()
   const {
@@ -271,5 +262,56 @@ invCont.updateInventory = async function (req, res, next) {
   }
 }
 
+/* ***************************
+ *  Build Delete Inventory Confirmation View
+ * ************************** */
+invCont.buildDeleteConfirm = async function (req, res, next) {
+  try {
+    const inv_id = parseInt(req.params.inv_id)
+    const itemData = await invModel.getInventoryById(inv_id)
+
+    if (!itemData) {
+      req.flash("notice", "Vehicle not found.")
+      return res.redirect("/inv/")
+    }
+
+    let nav = await utilities.getNav()
+    const itemName = `${itemData.inv_make} ${itemData.inv_model}`
+
+    res.render("inventory/delete-confirm", {
+      title: `Delete ${itemName}`,
+      nav,
+      message: req.flash("notice"),
+      errors: null,
+      inv_id: itemData.inv_id,
+      inv_make: itemData.inv_make,
+      inv_model: itemData.inv_model,
+      inv_year: itemData.inv_year,
+      inv_price: itemData.inv_price
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+/* ***************************
+ *  Handle Delete Inventory Item
+ * ************************** */
+invCont.deleteItem = async function (req, res, next) {
+  try {
+    const inv_id = parseInt(req.body.inv_id)
+    const deleteResult = await invModel.deleteInventoryItem(inv_id)
+
+    if (deleteResult) {
+      req.flash("notice", "Vehicle was successfully deleted.")
+      return res.redirect("/inv/")
+    } else {
+      req.flash("notice", "Vehicle deletion failed.")
+      return res.redirect(`/inv/delete/${inv_id}`)
+    }
+  } catch (error) {
+    next(error)
+  }
+}
 
 module.exports = invCont
