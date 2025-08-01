@@ -1,5 +1,6 @@
 <h1><%= title %></h1>
 
+<!-- Display flash messages -->
 <%- messages() %>
 
 <% if (errors) { %>
@@ -10,4 +11,20 @@
   </ul>
 <% } %>
 
-<p>You're logged in</p>
+<!-- Greet the logged-in user -->
+<h2>Welcome <%= loggedInUser.account_firstname %></h2>
+
+<!-- Update account link for all users -->
+<p>
+  <a href="/account/update/<%= loggedInUser.account_id %>">
+    Update Account Information
+  </a>
+</p>
+
+<!-- Show Inventory Management link only for Employee/Admin -->
+<% if (loggedInUser.account_type === "Employee" || loggedInUser.account_type === "Admin") { %>
+  <h3>Inventory Management</h3>
+  <p>
+    <a href="/inv/">Access Inventory Management</a>
+  </p>
+<% } %>

@@ -4,7 +4,7 @@ const utilities = require("../utilities/")
 const accountController = require("../controllers/accountController")
 const regValidate = require("../utilities/account-validation")
 
-//  Default account management view (protected)
+// Default account management view (protected)
 router.get(
   "/",
   utilities.checkLogin, 
@@ -37,6 +37,37 @@ router.post(
   regValidate.loginRules(),
   regValidate.checkLoginData,
   utilities.handleErrors(accountController.accountLogin)
+)
+
+// Route to build Update Account Information view
+router.get(
+  "/update/:account_id",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildUpdateAccount)
+)
+
+// Handle Account Information Update
+router.post(
+  "/update",
+  utilities.checkLogin,
+  regValidate.updateAccountRules(),
+  regValidate.checkUpdateData,
+  utilities.handleErrors(accountController.updateAccount)
+)
+
+// Handle Password Change
+router.post(
+  "/change-password",
+  utilities.checkLogin,
+  regValidate.passwordChangeRules(),
+  regValidate.checkPasswordData,
+  utilities.handleErrors(accountController.changePassword)
+)
+
+// Handle Logout
+router.get(
+  "/logout",
+  utilities.handleErrors(accountController.logoutAccount)
 )
 
 module.exports = router

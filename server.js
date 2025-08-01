@@ -18,6 +18,7 @@ const utilities = require("./utilities/")
 const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser") 
+const jwt = require("jsonwebtoken")
 
 /* ***********************
  * Create App
@@ -54,6 +55,22 @@ app.use(cookieParser())
 
 // Apply JWT Middleware globally
 app.use(utilities.checkJWTToken)
+
+// Global middleware to set loggedInUser for all views
+app.use((req, res, next) => {
+  const token = req.cookies.jwt
+  if (token) {
+    try {
+      const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+      res.locals.loggedInUser = decoded
+    } catch (error) {
+      res.locals.loggedInUser = null
+    }
+  } else {
+    res.locals.loggedInUser = null
+  }
+  next()
+})
 
 /* ***********************
  * View Engine and Templates
