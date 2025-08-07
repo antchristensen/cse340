@@ -7,9 +7,19 @@
       <!-- Show Welcome message and Logout when logged in -->
       <a href="/account/" title="Manage your account">Welcome <%= loggedInUser.account_firstname %></a>
       <a href="/account/logout" title="Click to log out">Logout</a>
+
+      <!-- If Manager or Admin, show Messages -->
+      <% if (loggedInUser.account_type === "Manager" || loggedInUser.account_type === "Admin") { %>
+        <a href="/admin/messages">Messages</a>
+      <% } else { %>
+        <!-- Otherwise, show Contact -->
+        <a href="/contact">Contact</a>
+      <% } %>
+
     <% } else { %>
-      <!-- Show My Account when not logged in -->
+      <!-- Show My Account and Contact when not logged in -->
       <a href="/account/login" title="Click to log in">My Account</a>
+      <a href="/contact">Contact</a>
     <% } %>
   </div>
 </header>

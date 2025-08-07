@@ -184,4 +184,21 @@ validate.checkPasswordData = async (req, res, next) => {
   next()
 }
 
+/* ******************************
+ *  Role-Based Access Control Middleware
+ ******************************* */
+validate.checkManagerAccess = (req, res, next) => {
+  const user = res.locals.loggedInUser
+
+  if (user && (user.account_type === "Manager" || user.account_type === "Admin")) {
+    return next()
+  }
+
+  return res.status(403).render("errors/error", {
+    title: "Access Denied",
+    message: "You do not have permission to view this page.",
+    nav: "" 
+  })
+}
+
 module.exports = validate
