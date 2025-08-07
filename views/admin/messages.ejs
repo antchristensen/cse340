@@ -1,0 +1,16 @@
+<h1>Submitted Messages</h1>
+
+<% if (messages.length > 0) { %>
+  <ul>
+    <% messages.forEach(msg => { %>
+      <li>
+        <strong><%= msg.name %></strong> (<%= msg.email %>)<br>
+        <em><%= msg.subject %></em><br>
+        <p><%= msg.body %></p>
+        <hr>
+      </li>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p>No messages submitted yet.</p>
+<% } %>

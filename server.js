@@ -19,6 +19,8 @@ const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser") 
 const jwt = require("jsonwebtoken")
+const staticRoutes = require("./routes/static")
+const messageRoutes = require("./routes/messageRoutes") 
 
 /* ***********************
  * Create App
@@ -82,7 +84,6 @@ app.set("layout", "./layouts/layout")
 /* ***********************
  * Routes
  *************************/
-const staticRoutes = require("./routes/static")
 app.use(staticRoutes)
 
 app.use("/error", errorRoute)
@@ -92,6 +93,8 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
 
 app.use("/account", accountRoute)
+
+app.use("/", messageRoutes) 
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {

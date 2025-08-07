@@ -451,3 +451,23 @@ nav li {
 #inventoryDisplay th {
   background-color: #f4f4f4;
 }
+
+form {
+  max-width: 600px;
+  padding: 1em;
+  background: #f9f9f9;
+  border-radius: 4px;
+  margin-bottom: 2em;
+}
+
+label {
+  display: block;
+  margin-top: 1em;
+  font-weight: bold;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.5em;
+  margin-top: 0.25em;
+}

@@ -1,0 +1,19 @@
+<h1>Contact Us</h1>
+
+<% if (success) { %>
+  <p style="color: green;"><%= success %></p>
+<% } %>
+
+<% if (error) { %>
+  <p style="color: red;"><%= error %></p>
+<% } %>
+
+<form method="POST" action="/contact">
+  <label>Name: <input type="text" name="name" required></label><br><br>
+  <label>Email: <input type="email" name="email" required></label><br><br>
+  <label>Subject: <input type="text" name="subject" required></label><br><br>
+  <label>Message:<br>
+    <textarea name="body" rows="5" cols="40" required></textarea>
+  </label><br><br>
+  <button type="submit">Send</button>
+</form>
